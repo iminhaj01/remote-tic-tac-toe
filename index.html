@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111827">
+  <title>Remote Tic-Tac-Toe</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <main class="app">
+    <header>
+      <div class="eyebrow">PLAY TOGETHER · ANYWHERE</div>
+      <h1>Remote <span>Tic-Tac-Toe</span></h1>
+      <p class="subtitle">A tiny game night, wherever everyone is.</p>
+    </header>
+
+    <section id="lobby" class="panel">
+      <h2>Start a game</h2>
+      <label for="playerName">Your name</label>
+      <input id="playerName" maxlength="20" placeholder="Enter your name" value="">
+      <button id="createBtn" class="primary">Create a room</button>
+      <div class="split"><span></span><small>OR JOIN A FRIEND</small><span></span></div>
+      <label for="roomCode">Room code</label>
+      <input id="roomCode" maxlength="6" placeholder="e.g. K7M2Q" autocomplete="off">
+      <button id="joinBtn" class="secondary">Join room</button>
+      <p class="hint">Share the room code with one other player. Both players need this same website open.</p>
+    </section>
+
+    <section id="game" class="panel hidden">
+      <div class="roombar">
+        <div><small>ROOM CODE</small><strong id="codeLabel">-----</strong></div>
+        <button id="copyBtn" class="copy">Copy code</button>
+      </div>
+      <div class="players">
+        <div id="playerX" class="player-card active"><b class="mark x">X</b><div><strong id="nameX">Player 1</strong><small>Player X</small></div></div>
+        <div id="playerO" class="player-card"><b class="mark o">O</b><div><strong id="nameO">Waiting…</strong><small>Player O</small></div></div>
+      </div>
+      <p id="status" class="status" aria-live="polite">Waiting for another player to join…</p>
+      <div id="board" class="board" role="group" aria-label="Tic-tac-toe board">
+        <button class="cell" data-index="0" aria-label="Cell 1"></button><button class="cell" data-index="1" aria-label="Cell 2"></button><button class="cell" data-index="2" aria-label="Cell 3"></button>
+        <button class="cell" data-index="3" aria-label="Cell 4"></button><button class="cell" data-index="4" aria-label="Cell 5"></button><button class="cell" data-index="5" aria-label="Cell 6"></button>
+        <button class="cell" data-index="6" aria-label="Cell 7"></button><button class="cell" data-index="7" aria-label="Cell 8"></button><button class="cell" data-index="8" aria-label="Cell 9"></button>
+      </div>
+      <div class="game-actions">
+        <button id="againBtn" class="primary hidden">Play another round</button>
+        <button id="leaveBtn" class="text-btn">Back to lobby</button>
+      </div>
+      <p class="rules"><strong>Rules:</strong> Take turns placing your mark in an empty square. First to get three in a row, column, or diagonal wins. If all nine squares fill with no three in a row, it’s a draw. X goes first.</p>
+    </section>
+    <p id="message" class="message" role="status"></p>
+    <footer>Made for friends in different places ✦</footer>
+  </main>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>
